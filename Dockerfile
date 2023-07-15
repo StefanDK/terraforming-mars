@@ -33,6 +33,8 @@ RUN npm ci --production --prefer-offline
 # Target image
 FROM node:16.13.2-alpine3.15
 
+RUN mkdir -p /usr/src/app/db/files
+
 WORKDIR /usr/src/app
 
 # Add user tfm
@@ -43,7 +45,7 @@ USER tfm
 
 # Copy required files.
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["package.json", "package-lock.json", "*.env", "./"]
 
 # Copy dependencies from intermediate image
 COPY --from=installProd /usr/src/app/node_modules ./node_modules

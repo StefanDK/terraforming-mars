@@ -10,5 +10,8 @@ services:
       - no-new-privileges:true
     volumes:
       - tm-db:/usr/src/app/db
+    environment:
+      MAX_GAME_DAYS: 120
+      LOCAL_FS_DB:
 volumes:
   tm-db:
